@@ -19,6 +19,6 @@
   "dependencies": {
     "bobolink": "3.0.0",
     "echonet-lite-more": "0.4.1",
-    "fakegato-history": "git+https://github.com/banboobee/fakegato-history.git"
+    "fakegato-history": "^0.6.3"
   }
 }
