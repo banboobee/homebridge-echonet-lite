@@ -19,6 +19,7 @@
   "dependencies": {
     "bobolink": "3.0.0",
     "echonet-lite-more": "0.4.1",
+    "node-persist": ">=2.1.0 <3.0.0",
     "fakegato-history": "^0.6.3"
   }
 }
