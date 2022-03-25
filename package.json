@@ -1,6 +1,6 @@
 {
   "name": "homebridge-echonet-lite",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "lib/index.js",
   "keywords": [
     "homebridge-plugin",
@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "bobolink": "3.0.0",
-    "echonet-lite-more": "0.4.1",
+    "echonet-lite-more": "0.5.0",
     "node-persist": ">=2.1.0 <3.0.0",
     "fakegato-history": "^0.6.3",
     "async-mqtt": "2.6.2"
