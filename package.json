@@ -18,6 +18,8 @@
   },
   "dependencies": {
     "bobolink": "3.0.0",
-    "echonet-lite-more": "0.5.0"
+    "echonet-lite-more": "0.5.0",
+    "fakegato-history": "^0.6.3",
+    "async-mqtt": "^2.6.2"
   }
 }
