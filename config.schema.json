@@ -1,0 +1,100 @@
+{
+  "pluginAlias": "ELPlatform",
+  "pluginType": "platform",
+  "singular": true,
+  "schema": {
+    "type":"object",
+    "properties": {
+      "enableRefreshSwitch": {
+	"type": "boolean",
+	"title": "Refresh button to discover devices",
+	"description": "Add a switch button accessory to re-discover devices",
+	"required": false,
+	"default": false
+      },
+      "history": {
+	"type": "boolean",
+	"title": "EVE logging",
+	"description": "Enables history views in EVE app",
+	"required": false,
+	"default": false
+      },
+      "mqttURL": {
+	"type": "string",
+	"title": "MQTT URL",
+	"description": "MQTT broker address to publish the status of accessories",
+	"required": false,
+	"default": false
+      },
+      "device": {
+	"type": "array",
+	"description": "Configure auto-discovered device manually. Manual configuration overrides the auto-discovered devices, and re-starting will remove them. Re-discovering will find the removed devices again.",
+	"items": {
+	  "type": "object",
+	  "properties": {
+	    "name": {
+	      "type": "string",
+	      "title": "Accessory Name",
+	      "description": "Default: ${service}.${address}[triplet].${server}",
+	      "required": false,
+	      "default": false
+	    },
+	    "address": {
+	      "type": "string",
+	      "title": "Controller Address",
+	      "description": "Find from auto-discovered devices",
+	      "required": true,
+	      "default": false,
+	      "format": "ipv4"
+	    },
+	    "instance": {
+	      "type": "number",
+	      "title": "Instance Code",
+	      "description": "Last digit in a tripplet of auto-discovered device",
+	      "required": true,
+	      "default": "1"
+	    },
+	    "service": {
+	      "type": "string",
+	      "title": "Mapping of Device to HomeKit Service",
+	      "description": "Select first two digits equivalent to a tripplet of auto-discovered device",
+	      "required": true,
+	      "default": "Original",
+	      "oneOf": [
+		{"title": "[1, 0x30]: Basic air-conditioner", "enum": ["Original"]},
+		{"title": "[1, 0x30]: HeaterCooler type air-conditioner with EVE logging", "enum": ["HeaterCooler"]},
+		{"title": "[1, 0x30]: Thermostat type air-conditioner with EVE logging", "enum": ["Thermostat2"]},
+		{"title": "[1, 0x30]: Thermostat type air-conditioner with EVE logging including valve history", "enum": ["Thermostat"]},
+		{"title": "[1, 0x91]: Single function lighting class light-bulb", "enum": ["Original"]},
+		{"title": "[2, 0x90]: General lighting class light-bulb", "enum": ["Original"]}
+	      ]
+	    }
+	  }
+	}
+      }
+    }
+  },
+  "layout": [
+    {
+      "title": "Common settings",
+      "items": [
+	"enableRefreshSwitch",
+        "history",
+	"mqttURL"
+      ]
+    },
+    {
+      "title": "Echonet-lite Devices",
+      "expandable": true,
+      "expanded": true,
+      "buttonText": "Add Devices",
+      "key": "device",
+      "items": [
+        "device[].name",
+        "device[].address",
+        "device[].service",
+        "device[].instance"
+      ]
+    }
+  ]
+}
