@@ -36,8 +36,7 @@
 	      "type": "string",
 	      "title": "Accessory Name",
 	      "description": "Default: ${service}.${address}[triplet].${server}",
-	      "required": false,
-	      "default": false
+	      "required": false
 	    },
 	    "address": {
 	      "type": "string",
@@ -61,12 +60,12 @@
 	      "required": true,
 	      "default": "Original",
 	      "oneOf": [
-		{"title": "[1, 0x30]: Basic air-conditioner", "enum": ["Original"]},
+		{"title": "[1, 0x30]: HeaterCooler type Basic air-conditioner", "enum": ["heatercooler0"]},
 		{"title": "[1, 0x30]: HeaterCooler type air-conditioner with EVE logging", "enum": ["HeaterCooler"]},
 		{"title": "[1, 0x30]: Thermostat type air-conditioner with EVE logging", "enum": ["Thermostat2"]},
 		{"title": "[1, 0x30]: Thermostat type air-conditioner with EVE logging including valve history", "enum": ["Thermostat"]},
-		{"title": "[1, 0x91]: Single function lighting class light-bulb", "enum": ["Original"]},
-		{"title": "[2, 0x90]: General lighting class light-bulb", "enum": ["Original"]}
+		{"title": "[1, 0x91]: Single function lighting class light-bulb", "enum": ["lightbulb1"]},
+		{"title": "[2, 0x90]: General lighting class light-bulb", "enum": ["lightbulb2"]}
 	      ]
 	    }
 	  }
