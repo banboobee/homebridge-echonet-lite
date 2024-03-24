@@ -43,7 +43,6 @@
 	      "title": "Controller Address",
 	      "description": "Find from auto-discovered devices",
 	      "required": true,
-	      "default": false,
 	      "format": "ipv4"
 	    },
 	    "instance": {
@@ -51,14 +50,18 @@
 	      "title": "Instance Code",
 	      "description": "Last digit in a tripplet of auto-discovered device",
 	      "required": true,
-	      "default": "1"
+              "condition": {
+		"functionBody": "return model.device[arrayIndices].instance;"
+              }
 	    },
 	    "service": {
 	      "type": "string",
 	      "title": "Mapping of Device to HomeKit Service",
 	      "description": "Select first two digits equivalent to a tripplet of auto-discovered device",
 	      "required": true,
-	      "default": "Original",
+              "condition": {
+		"functionBody": "return model.device[arrayIndices].service;"
+              },
 	      "oneOf": [
 		{"title": "[1, 0x30]: HeaterCooler type Basic air-conditioner", "enum": ["heatercooler0"]},
 		{"title": "[1, 0x30]: HeaterCooler type air-conditioner with EVE logging", "enum": ["HeaterCooler"]},
@@ -67,6 +70,21 @@
 		{"title": "[1, 0x91]: Single function lighting class light-bulb", "enum": ["lightbulb1"]},
 		{"title": "[2, 0x90]: General lighting class light-bulb", "enum": ["lightbulb2"]}
 	      ]
+	    },
+	    "eoj": {
+	      "type": "array",
+	      "title": "echonet-lite object",
+	      "description": "Find the tripplet code (class-group, class, instance) of auto-discovered device",
+	      "required": true,
+	      "expanded": true,
+	      "minItems": 3,
+	      "maxItems": 3,
+	      "items": {
+		"type": "number"
+	      },
+              "condition": {
+		"functionBody": "return !model.device[arrayIndices].instance;"
+              }
 	    }
 	  }
 	}
@@ -88,11 +106,19 @@
       "expanded": true,
       "buttonText": "Add Devices",
       "key": "device",
+      "type": "array",
       "items": [
         "device[].name",
         "device[].address",
         "device[].service",
-        "device[].instance"
+        "device[].instance",
+	{
+	  "key": "device[].eoj",
+	  "type": "array",
+	  "items": [
+	    "device[].eoj[]"
+	  ]
+	}
       ]
     }
   ]
