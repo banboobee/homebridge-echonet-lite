@@ -14,12 +14,12 @@
     }
   ],
   "engines": {
-    "homebridge": ">= 0.4.0"
+    "homebridge": ">= 0.4.0 || ^2.0.0-beta.0"
   },
   "dependencies": {
     "bobolink": "3.0.0",
     "echonet-lite-more": "0.5.0",
-    "fakegato-history": "^0.6.3",
+    "fakegato-history": "github:banboobee/fakegato-history",
     "async-mqtt": "^2.6.2",
     "homebridge-lib": "^6.6.3"
   }
